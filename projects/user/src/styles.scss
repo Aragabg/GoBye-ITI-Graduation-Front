@@ -1,1 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+:root {
+  --color-main: #073e7e;
+  --color-secondary: #6d90ac;
+  --color-orange: #fc9900;
+  --transition-main: 0.3s;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Lato", sans-serif;
+  line-height: 1.7;
+}
+/* ================== GENERAL STYLES ==================*/

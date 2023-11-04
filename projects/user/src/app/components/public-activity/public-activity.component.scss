@@ -1,0 +1,14 @@
+.main {
+  h3 {
+    color: var(--color-main);
+    font-weight: bold;
+  }
+  .publicActivities {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    gap: 50px;
+    .box {
+      gap: 20px;
+    }
+  }
+}

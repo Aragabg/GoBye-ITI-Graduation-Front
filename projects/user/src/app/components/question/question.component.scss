@@ -1,0 +1,26 @@
+.main {
+  > h3 {
+    width: fit-content;
+    padding-bottom: 10px;
+    margin-bottom: 40px;
+    border-bottom: 5px solid black;
+  }
+  .questions {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    .box {
+      padding: 20px;
+      box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 15px;
+      transition: var(--transition-main);
+      border-radius: 10px;
+      &:hover {
+        transform: translateY(-10px);
+      }
+      .title {
+      }
+      .answer {
+      }
+    }
+  }
+}

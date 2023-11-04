@@ -1,0 +1,48 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+  .left {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    .logo {
+      img {
+        width: 100px;
+      }
+    }
+    .links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      li {
+        a {
+          color: var(--color-main);
+          font-weight: bold;
+          display: block;
+          padding-bottom: 10px;
+          &:hover {
+            padding-bottom: 5px;
+            border-bottom: 5px solid var(--color-orange);
+          }
+        }
+        .active {
+          padding-bottom: 5px;
+          border-bottom: 5px solid var(--color-orange);
+        }
+      }
+    }
+  }
+  .right ul {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    li {
+      a {
+        color: var(--color-main);
+      }
+    }
+  }
+}
