@@ -14,6 +14,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { PublicActivityComponent } from './components/public-activity/public-activity.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { QuestionComponent } from './components/question/question.component';
+import { DatePipe } from '@angular/common';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { BusClassComponent } from './components/bus-class/bus-class.component';
+import { ChooseTripComponent } from './components/choose-trip/choose-trip.component';
 
 @NgModule({
   declarations: [
@@ -28,9 +32,19 @@ import { QuestionComponent } from './components/question/question.component';
     LoginComponent,
     PublicActivityComponent,
     QuestionComponent,
+    SpinnerComponent,
+    BusClassComponent,
+    ChooseTripComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule,FormsModule,ReactiveFormsModule],
-  providers: [],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    DatePipe,
+  ],
+  providers: [DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

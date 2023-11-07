@@ -21,20 +21,20 @@ import { IDestinationBranches } from '../../models/idestination-branches';
 export class BranchComponent implements OnInit {
   response: IResponse = {} as IResponse;
   destinationBranches: IDestinationBranches[] = [];
-  
   constructor(private branchService: BranchService) {}
   ngOnInit(): void {
-    this.GetAllBranchesByDestinationId();
+    this.GetAllBranchesWithDestinationId();
   }
 
-  GetAllBranchesByDestinationId() {
-    this.branchService.GetAllBranchesByDestinationId().subscribe({
+  GetAllBranchesWithDestinationId() {
+
+    this.branchService.GetAllBranchesWithDestinationId().subscribe({
       next: (v) => {
         this.response = v as IResponse;
         this.destinationBranches = this.response.data;
       },
       error: (e) => console.log(e),
-      complete: () => console.log('branches')
+      complete: () => console.log('branches'),
     });
   }
 }

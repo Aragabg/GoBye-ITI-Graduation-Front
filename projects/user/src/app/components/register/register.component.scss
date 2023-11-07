@@ -1,0 +1,28 @@
+.main {
+  max-width: 800px;
+  margin: auto;
+  form {
+    padding: 40px 20px;
+    box-shadow: 0 1px 6px 0 rgba(184, 184, 184, 0.3);
+    background-color: white;
+    small {
+      color: red;
+    }
+    button {
+      background-color: var(--color-orange);
+      color: white;
+      margin: 20px 0;
+    }
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+  }
+}

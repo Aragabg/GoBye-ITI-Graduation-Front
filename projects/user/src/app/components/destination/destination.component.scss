@@ -2,7 +2,6 @@
   h3 {
     color: var(--color-main);
     margin-bottom: 50px;
-
   }
   .destinations {
     display: grid;
@@ -10,9 +9,12 @@
     gap: 20px;
     .box {
       position: relative;
-      box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.5);
+      box-shadow: 0 1px 6px 0 rgba(184, 184, 184, 0.3);
+      background-color: white;
+      border-radius: 10px;
+      overflow: hidden;
       transition: var(--transition-main);
-      &:hover{
+      &:hover {
         transform: translateY(-10px);
       }
       cursor: pointer;
@@ -38,7 +40,7 @@
           transition: all 0.3s ease-in-out;
         }
       }
-      &:hover .destination img{
+      &:hover .destination img {
         transform: translateX(10px);
       }
     }
