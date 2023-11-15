@@ -26,7 +26,9 @@
           id="firstName"
           name="firstName"
           [class.is-invalid]="firstName?.invalid && firstName?.touched"
-          [class.is-valid]="firstName?.valid && firstName?.touched"
+          [class.is-valid]="
+            (firstName?.valid && firstName?.touched) || firstName?.untouched
+          "
         />
         <div [hidden]="firstName?.valid || firstName?.untouched">
           <small *ngIf="firstName?.errors?.['required']">
@@ -48,7 +50,9 @@
           id="lastName"
           name="lastName"
           [class.is-invalid]="lastName?.invalid && lastName?.touched"
-          [class.is-valid]="lastName?.valid && lastName?.touched"
+          [class.is-valid]="
+            (lastName?.valid && lastName?.touched) || lastName?.untouched
+          "
         />
         <div [hidden]="lastName?.valid || lastName?.untouched">
           <small *ngIf="lastName?.errors?.['required']">
@@ -70,7 +74,9 @@
           id="email"
           name="email"
           [class.is-invalid]="email?.invalid && email?.touched"
-          [class.is-valid]="email?.valid && email?.touched"
+          [class.is-valid]="
+            (email?.valid && email?.touched) || email?.untouched
+          "
         />
         <div [hidden]="email?.valid || email?.untouched">
           <small *ngIf="email?.errors?.['required']">
@@ -92,7 +98,10 @@
           id="phoneNumber"
           name="phoneNumber"
           [class.is-invalid]="phoneNumber?.invalid && phoneNumber?.touched"
-          [class.is-valid]="phoneNumber?.valid && phoneNumber?.touched"
+          [class.is-valid]="
+            (phoneNumber?.valid && phoneNumber?.touched) ||
+            phoneNumber?.untouched
+          "
         />
         <div [hidden]="phoneNumber?.valid || phoneNumber?.untouched">
           <small *ngIf="phoneNumber?.errors?.['required']">
@@ -193,8 +202,8 @@
     <div class="help">
       <h6>Need more help?</h6>
       <p>Contact us on 19567</p>
-      <p>For complaints contact us on "customer-complaints@gobye-eg.com"</p>
-      <p>Or contact us on "Info@Go-Bye.com"</p>
+      <p>For complaints contact us on customer-complaints gobus-eg.com</p>
+      <p>Or contact us on InfoGo-Bye.com</p>
     </div>
   </div>
 </div>

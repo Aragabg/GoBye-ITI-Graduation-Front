@@ -7,6 +7,11 @@ import {
 } from '@angular/forms';
 import { IReport } from '../../models/ireport';
 import { ReportService } from '../../services/report/report.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+import { UserService } from '../../services/user/user.service';
+import { IUser } from '../../models/iuser';
+import { IResponse } from '../../models/iresponse';
 
 @Component({
   selector: 'app-contact-us',
@@ -15,46 +20,70 @@ import { ReportService } from '../../services/report/report.service';
 })
 export class ContactUsComponent implements OnInit {
   reportForm: FormGroup;
-  constructor(private fb: FormBuilder, private service: ReportService) {
-    this.reportForm = fb.group({
+  user: IUser = {} as IUser;
+
+  constructor(
+    private fb: FormBuilder,
+    private service: ReportService,
+    private userService: UserService,
+    private toaster: ToastrService,
+    private router: Router
+  ) {
+    this.reportForm = this.fb.group({
       firstName: [
-        '',
+        this.user.firstName,
         [Validators.required, Validators.pattern('[A-Za-z]{3,}')],
       ],
-      lastName: ['', [Validators.required, Validators.pattern('[A-Za-z]{3,}')]],
+      lastName: [
+        this.user.lastName,
+        [Validators.required, Validators.pattern('[A-Za-z]{3,}')],
+      ],
       email: [
-        '',
+        this.user.email,
         [
           Validators.required,
-          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+          Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
         ],
       ],
-      phoneNumber: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
+      phoneNumber: [
+        this.user.phoneNumber,
+        [Validators.required, Validators.pattern('[0-9]{10}')],
+      ],
       reservationNumber: [
         '',
         [Validators.required, Validators.pattern('[0-9]{1,6}')],
       ],
       messageTitle: [
         '',
-        [Validators.required, Validators.pattern('[A-Za-z0-9]{3,}')],
+        [Validators.required, Validators.pattern('[a-zA-Z0-9_ ]{3,}')],
       ],
       messageContent: [
         '',
-        [Validators.required, Validators.pattern('[A-Za-z0-9]{3,}')],
+        [Validators.required, Validators.pattern('[a-zA-Z0-9_ ]{3,}')],
       ],
     });
   }
 
   ngOnInit(): void {
-    //this.fillForm();
+    this.fillForm();
+    this.firstName?.valid;
+    this.lastName?.valid;
   }
 
   fillForm() {
-    this.reportForm.patchValue({
-      firstName: 'Mohamed',
-      lastName: 'Bayoumi',
-      email: 'MBayoumi147@gmail.com',
-      phoneNumber: '01093996245',
+    this.userService.GetUser().subscribe({
+      next: (v) => {
+        let response = v as IResponse;
+        let user = response.data as IUser;
+        this.reportForm.patchValue({
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          phoneNumber: user.phoneNumber.slice(1),
+        });
+      },
+      // error: (e) => {},
+      // complete: () => console.log('complete'),
     });
   }
 
@@ -62,10 +91,14 @@ export class ContactUsComponent implements OnInit {
     let report: IReport = this.reportForm.value;
     this.service.AddReport(report).subscribe({
       next: (v) => {
-        console.log(v);
+        let response = v as IResponse;
+        this.toaster.success('success', response.messages.toString());
+        this.router.navigate(['/home']);
       },
-      error: (e) => console.log(e),
-      complete: () => console.log('complete'),
+      // error: (e) => {
+      //   this.toaster.error('failed to send report');
+      // },
+      // complete: () => console.log('complete'),
     });
   }
 

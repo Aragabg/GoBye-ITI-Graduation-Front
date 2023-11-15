@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IRegister } from '../../models/iregister';
+import { IUser } from '../../models/iuser';
 import { environment } from '../../environments/environment';
+import { ILogin } from '../../models/ilogin';
 
 @Injectable({
   providedIn: 'root',
@@ -9,17 +10,22 @@ import { environment } from '../../environments/environment';
 export class UserService {
   constructor(private http: HttpClient) {}
 
-  Register(user: IRegister) {
-    return this.http.post(`${environment.Api}/ApplicationUsers/register`, user);
+  Login(login: ILogin) {
+    return this.http.post(`${environment.Api}/ApplicationUsers/Login`, login);
   }
 
-  CheckIfUserNameExist(username: string) {
-    return this.http.get(
-      `${environment.Api}/ApplicationUsers/userName/${username}`
-    );
+  Register(register: IUser) {
+    return this.http.post(`${environment.Api}/ApplicationUsers/register`, register);
+  }
+  GetAllUserNames() {
+    return this.http.get(`${environment.Api}/users/usernames`);
   }
 
-  CheckEmail(email: string) {
-    return this.http.get(`${environment.Api}/ApplicationUsers/email/${email}`);
+  GetAllEmails() {
+    return this.http.get(`${environment.Api}/users/emails`);
+  }
+
+  GetUser() {
+    return this.http.get(`${environment.Api}/ApplicationUsers/getUser`);
   }
 }

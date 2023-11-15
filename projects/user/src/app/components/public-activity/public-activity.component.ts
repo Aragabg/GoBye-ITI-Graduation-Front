@@ -33,8 +33,8 @@ export class PublicActivityComponent implements OnInit {
         this.publicActivities = this.response.data;
         this.destinationName = this.publicActivities[0].destinationName
       },
-      error: (e) => console.log(e),
-      complete: () => console.log('complete'),
+      // error: (e) => console.log(e),
+      // complete: () => console.log('complete'),
     });
   }
 }

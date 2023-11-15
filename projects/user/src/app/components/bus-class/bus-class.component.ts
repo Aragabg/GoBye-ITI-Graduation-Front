@@ -22,10 +22,9 @@ export class BusClassComponent implements OnInit {
       next: (v) => {
         this.response = v as IResponse;
         this.busClasses = this.response.data;
-        console.log(this.busClasses);
       },
-      error: (e) => console.log(e),
-      complete: () => console.log('branches'),
+      // error: (e) => console.log(e),
+      // complete: () => console.log('branches'),
     });
   }
 }

@@ -12,6 +12,12 @@ export class BranchService {
     return this.http.get(`${environment.Api}/Destinations/branches`);
   }
 
+  GetAllBranchesByDestinationId(destinationId: number) {
+    return this.http.get(
+      `${environment.Api}/StartBranches/destinationId/${destinationId}`
+    );
+  }
+
   GetAllStartBranches() {
     return this.http.get(`${environment.Api}/StartBranches`);
   }
@@ -36,13 +42,11 @@ export class BranchService {
     );
   }
 
-  GetEndBranchById(id:number) {
+  GetEndBranchById(id: number) {
     return this.http.get(`${environment.Api}/EndBranches/${id}`);
   }
 
-  GetStartBranchById(id:number) {
+  GetStartBranchById(id: number) {
     return this.http.get(`${environment.Api}/StartBranches/${id}`);
   }
-
-
 }

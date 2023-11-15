@@ -13,124 +13,123 @@ import { Router } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
-  filterTripsForm: FormGroup;
+export class HomeComponent {
+  // filterTripsForm: FormGroup;
 
-  startBranches: IBranch[] = [];
-  endBranches: IBranch[] = [];
+  // startBranches: IBranch[] = [];
+  // endBranches: IBranch[] = [];
 
-  startBranch: IBranch = {} as IBranch;
-  endBranch: IBranch = {} as IBranch;
+  // startBranch: IBranch = {} as IBranch;
+  // endBranch: IBranch = {} as IBranch;
 
-  newStartBranches: IBranch[] = [];
-  newEndBranches: IBranch[] = [];
-  today: string | null = '';
+  // newStartBranches: IBranch[] = [];
+  // newEndBranches: IBranch[] = [];
+  // today: string | null = '';
   constructor(
-    private service: BranchService,
-    private fb: FormBuilder,
-    private dPipe: DatePipe,
-    private tripService: TripService,
-    private router: Router
+    // private service: BranchService,
+    // private fb: FormBuilder,
+    // private dPipe: DatePipe,
+    // private tripService: TripService,
+    // private router: Router
   ) {
-    this.today = dPipe.transform(new Date(), 'yyyy-MM-dd');
+    // this.today = dPipe.transform(new Date(), 'yyyy-MM-dd');
 
-    this.filterTripsForm = fb.group({
-      departureDate: [this.today, [Validators.required]],
-      startBranchId: [1, [Validators.required]],
-      endBranchId: [16, [Validators.required]],
-      quantity: [1, [Validators.required]],
-    });
+    // this.filterTripsForm = fb.group({
+    //   departureDate: [this.today, [Validators.required]],
+    //   startBranchId: [1, [Validators.required]],
+    //   endBranchId: [14, [Validators.required]],
+    //   quantity: [1, [Validators.required]],
+    // });
   }
 
-  ngOnInit(): void {
-    this.GetAllStartBranches();
-    this.GetAllEndBranches();
-  }
+  // ngOnInit(): void {
+  //   this.GetAllStartBranches();
+  //   this.GetAllEndBranches();
+  // }
 
-  changeStartBranch(selectStartBranch: any) {
-    this.startBranch = this.startBranches.find(
-      (x) => x.id == selectStartBranch.value
-    ) as IBranch;
+  // changeStartBranch(selectStartBranch: any) {
+  //   this.startBranch = this.startBranches.find(
+  //     (x) => x.id == selectStartBranch.value
+  //   ) as IBranch;
 
-    this.service
-      .FilterEndBranchesByStartBranchDestinationIdAsync(
-        this.startBranch.destinationId
-      )
-      .subscribe({
-        next: (v) => {
-          let response = v as IResponse;
-          this.newEndBranches = response.data;
-        },
-        error: (e) => console.log(e),
-        complete: () => console.log('complete'),
-      });
-  }
+  //   this.service
+  //     .FilterEndBranchesByStartBranchDestinationIdAsync(
+  //       this.startBranch.destinationId
+  //     )
+  //     .subscribe({
+  //       next: (v) => {
+  //         let response = v as IResponse;
+  //         this.newEndBranches = response.data;
+  //       },
+  //       // error: (e) => console.log(e),
+  //       // complete: () => console.log('complete'),
+  //     });
+  // }
 
-  changeEndBranch(selectEndBranch: any) {
-    this.endBranch = this.endBranches.find(
-      (x) => x.id == selectEndBranch.value
-    ) as IBranch;
+  // changeEndBranch(selectEndBranch: any) {
+  //   this.endBranch = this.endBranches.find(
+  //     (x) => x.id == selectEndBranch.value
+  //   ) as IBranch;
 
-    this.service
-      .FilterStartBranchesByEndBranchDestinationIdAsync(
-        this.endBranch.destinationId
-      )
-      .subscribe({
-        next: (v) => {
-          let response = v as IResponse;
-          this.newStartBranches = response.data;
-        },
-        error: (e) => console.log(e),
-        complete: () => console.log('complete'),
-      });
-  }
+  //   this.service
+  //     .FilterStartBranchesByEndBranchDestinationIdAsync(
+  //       this.endBranch.destinationId
+  //     )
+  //     .subscribe({
+  //       next: (v) => {
+  //         let response = v as IResponse;
+  //         this.newStartBranches = response.data;
+  //       },
+  //       // error: (e) => console.log(e),
+  //       // complete: () => console.log('complete'),
+  //     });
+  // }
 
+  // submit() {
+  //   let filterTrip: IFilterTrip = this.filterTripsForm.value;
+  //   this.router.navigate([
+  //     '/search/',
+  //     filterTrip.departureDate,
+  //     filterTrip.startBranchId,
+  //     filterTrip.endBranchId,
+  //     filterTrip.quantity,
+  //   ]);
+  // }
 
-  submit() {
-    let filterTrip: IFilterTrip = this.filterTripsForm.value;
-    this.router.navigate([
-      '/search/',
-      filterTrip.departureDate,
-      filterTrip.startBranchId,
-      filterTrip.endBranchId,
-      filterTrip.quantity,
-    ]);
-  }
+  // GetAllStartBranches() {
+  //   this.service.GetAllStartBranches().subscribe({
+  //     next: (v) => {
+  //       let response = v as IResponse;
+  //       this.startBranches = response.data;
+  //       this.newStartBranches = response.data;
+  //     },
+  //     // error: (e) => console.log(e),
+  //     //complete: () => console.log('startBranches'),
+  //   });
+  // }
 
-  GetAllStartBranches() {
-    this.service.GetAllStartBranches().subscribe({
-      next: (v) => {
-        let response = v as IResponse;
-        this.startBranches = response.data;
-        this.newStartBranches = response.data;
-      },
-      error: (e) => console.log(e),
-      //complete: () => console.log('startBranches'),
-    });
-  }
+  // GetAllEndBranches() {
+  //   this.service.GetAllEndBranches().subscribe({
+  //     next: (v) => {
+  //       let response = v as IResponse;
+  //       this.endBranches = response.data;
+  //       this.newEndBranches = response.data;
+  //     },
+  //     // error: (e) => console.log(e),
+  //     // complete: () => console.log('EndBranches'),
+  //   });
+  // }
 
-  GetAllEndBranches() {
-    this.service.GetAllEndBranches().subscribe({
-      next: (v) => {
-        let response = v as IResponse;
-        this.endBranches = response.data;
-        this.newEndBranches = response.data;
-      },
-      error: (e) => console.log(e),
-      complete: () => console.log('EndBranches'),
-    });
-  }
-
-  get departureDate() {
-    return this.filterTripsForm.get('departureDate');
-  }
-  get startBranchId() {
-    return this.filterTripsForm.get('startBranchId');
-  }
-  get endBranchId() {
-    return this.filterTripsForm.get('endBranchId');
-  }
-  get quantity() {
-    return this.filterTripsForm.get('quantity');
-  }
+  // get departureDate() {
+  //   return this.filterTripsForm.get('departureDate');
+  // }
+  // get startBranchId() {
+  //   return this.filterTripsForm.get('startBranchId');
+  // }
+  // get endBranchId() {
+  //   return this.filterTripsForm.get('endBranchId');
+  // }
+  // get quantity() {
+  //   return this.filterTripsForm.get('quantity');
+  // }
 }

@@ -1,5 +1,6 @@
 <div class="main container py-5">
-  <div class="trips">
+  <app-filter-trip></app-filter-trip>
+  <div class="trips mt-5">
     <div class="title mb-4">
       <div class="start">
         <span>From {{ startBranch.destinationName }}</span>
@@ -59,7 +60,7 @@
         <h5 class="date">{{ trip.arrivalDate | date : "shortTime" }}</h5>
       </div>
       <div class="reservation">
-        <button>CHOOSE TRIP</button>
+        <button (click)="ChooseTrip(trip.id)">CHOOSE TRIP</button>
         <div class="price">
           <h4>{{ trip.price }} EGP</h4>
           <span>Per Seat</span>

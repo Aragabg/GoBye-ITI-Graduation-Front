@@ -23,10 +23,9 @@ export class QuestionComponent implements OnInit {
       next: (v) => {
         this.response = v as IResponse;
         this.questions = this.response.data;
-        console.log(this.questions);
       },
-      error: (e) => console.log(e),
-      complete: () => console.log('complete'),
+      // error: (e) => console.log(e),
+      // complete: () => console.log('complete'),
     });
   }
 }

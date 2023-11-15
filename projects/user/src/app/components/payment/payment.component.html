@@ -1,0 +1,76 @@
+<div class="main p-4">
+  <header class="d-flex justify-content-between align-items-center">
+    <h1 class="m-0">Confirm Payment</h1>
+    <span mat-flat-button matDialogClose class="text-danger">
+      <mat-icon>X</mat-icon>
+    </span>
+  </header>
+
+  <form [formGroup]="paymentForm">
+    <div class="row mb-3">
+      <div class="form-group col-12">
+        <label for="nameOnCard" class="form-label">Name On Card</label>
+        <input
+          type="text"
+          formControlName="nameOnCard"
+          class="form-control"
+          id="nameOnCard"
+          name="nameOnCard"
+          [class.is-invalid]="nameOnCard?.invalid && nameOnCard?.touched"
+          [class.is-valid]="nameOnCard?.valid && nameOnCard?.touched"
+        />
+        <div [hidden]="nameOnCard?.valid || nameOnCard?.untouched">
+          <small *ngIf="nameOnCard?.errors?.['required']">
+            * Please enter your name.
+          </small>
+          <small *ngIf="nameOnCard?.errors?.['pattern']">
+            * Name must be 3 letters at least.
+          </small>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-6">
+        <div class="form-floating">
+          <div class="form-control" #cardNumber></div>
+          <label>Card Number</label>
+          <span class="text-danger">{{ cardErrors }}</span>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="form-floating">
+          <div class="form-control" #cardExpiry></div>
+          <label>Card Expiry</label>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="form-floating">
+          <div class="form-control" #cardCvc></div>
+          <label>Card CVC</label>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <footer class="tw-p-6">
+    <div class="d-flex justify-content-center align-items-center">
+      <div mat-flat-button class="btn btn-success py-1 px-5 mx-2">
+        <button
+          [disabled]="
+            paymentForm.invalid ||
+            !cardNumberComplete ||
+            !cardExpiryComplete ||
+            !cardCvcComplete
+          "
+          (click)="ConfirmPayment()"
+        >
+          Confirm Payment
+        </button>
+      </div>
+
+      <div mat-flat-button matDialogClose class="btn btn-danger py-1 px-5">
+        <button>Close</button>
+      </div>
+    </div>
+  </footer>
+</div>

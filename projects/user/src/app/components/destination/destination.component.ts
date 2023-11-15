@@ -25,8 +25,8 @@ export class DestinationComponent implements OnInit {
         this.response = v as IResponse;
         this.destinations = this.response.data;
       },
-      error: (e) => console.log(e),
-      complete: () => console.log('complete'),
+      // error: (e) => console.log(e),
+      // complete: () => console.log('complete'),
     });
   }
 

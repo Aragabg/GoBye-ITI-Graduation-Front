@@ -2,7 +2,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 20px;
+  padding: 10px 0;
   @media (max-width: 992px) {
     & {
       padding-bottom: 20px;
@@ -38,9 +38,9 @@ header {
           color: var(--color-main);
           font-weight: bold;
           display: block;
-          padding-bottom: 10px;
+          padding: 10px 0;
           &:hover {
-            padding-bottom: 5px;
+            padding: 10px 0 5px;
             border-bottom: 5px solid var(--color-orange);
           }
           @media (max-width: 576px) {
@@ -50,7 +50,7 @@ header {
           }
         }
         .active {
-          padding-bottom: 5px;
+          padding: 10px 0 5px;
           border-bottom: 5px solid var(--color-orange);
         }
       }
@@ -63,6 +63,24 @@ header {
     li {
       a {
         color: var(--color-main);
+        font-weight: bold;
+        display: block;
+        padding: 5px 10px;
+        border-radius: 10px;
+
+        &:hover {
+          background-color: var(--color-main);
+          color: white;
+        }
+        @media (max-width: 576px) {
+          & {
+            font-size: 12px;
+          }
+        }
+      }
+      .active {
+        background-color: var(--color-main);
+        color: white;
       }
     }
   }

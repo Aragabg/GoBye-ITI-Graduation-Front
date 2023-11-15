@@ -27,14 +27,13 @@ export class BranchComponent implements OnInit {
   }
 
   GetAllBranchesWithDestinationId() {
-
     this.branchService.GetAllBranchesWithDestinationId().subscribe({
       next: (v) => {
         this.response = v as IResponse;
         this.destinationBranches = this.response.data;
       },
-      error: (e) => console.log(e),
-      complete: () => console.log('branches'),
+      // error: (e) => console.log(e),
+      // complete: () => console.log('branches'),
     });
   }
 }

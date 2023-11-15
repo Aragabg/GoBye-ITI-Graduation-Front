@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -7,19 +7,28 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { IRegister } from '../../models/iregister';
 import { UserService } from '../../services/user/user.service';
 import { IResponse } from '../../models/iresponse';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+import { IUser } from '../../models/iuser';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   userRegisterForm: FormGroup;
   response: IResponse = {} as IResponse;
-  constructor(private fb: FormBuilder, private userService: UserService) {
+  userNames: string[] = [];
+  userEmails: string[] = [];
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private toaster: ToastrService,
+    private router: Router
+  ) {
     this.userRegisterForm = fb.group(
       {
         firstName: [
@@ -32,13 +41,18 @@ export class RegisterComponent {
         ],
         userName: [
           '',
-          [Validators.required, Validators.pattern('[A-Za-z0-9]{3,}')],
+          [
+            Validators.required,
+            Validators.pattern('[A-Za-z0-9]{3,}'),
+            this.existUserNameValidator(),
+          ],
         ],
         email: [
           '',
           [
             Validators.required,
             Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+            this.existEmailValidator(),
           ],
         ],
         password: [
@@ -57,24 +71,55 @@ export class RegisterComponent {
         ],
       },
 
-      { validators: [this.passwordMatchValidator, this.userNameValidator] }
+      { validators: this.passwordMatchValidator }
     );
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.GetAllUserNames();
+    this.GetAllEmails();
+  }
 
   submit() {
-    let userRegister: IRegister = this.userRegisterForm.value;
-    console.log(userRegister);
+    let userRegister: IUser = this.userRegisterForm.value;
 
     this.userService.Register(userRegister).subscribe({
       next: (v) => {
         this.response = v as IResponse;
-        console.log(this.response);
+        this.toaster.success('success', 'Register Success');
+        this.router.navigate(['/login']);
       },
-      error: (e) => console.log(e),
-      complete: () => console.log('complete'),
+      // error: (e) => {
+      //   this.toaster.error('Register failed');
+      // },
+      // complete: () => console.log('complete'),
     });
+  }
+
+  existEmailValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      let emailVal: string = control.value;
+
+      if (emailVal.length == 0 && control.untouched) {
+        return null;
+      }
+      let validationError = { existEmail: true };
+      let foundEmail = this.userEmails.includes(emailVal);
+      return foundEmail ? validationError : null;
+    };
+  }
+
+  existUserNameValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      let userNameVal: string = control.value;
+
+      if (userNameVal.length == 0 && control.untouched) {
+        return null;
+      }
+      let validationError = { existUserName: true };
+      let foundEmail = this.userNames.includes(userNameVal);
+      return foundEmail ? validationError : null;
+    };
   }
 
   passwordMatchValidator(form: FormGroup) {
@@ -88,28 +133,26 @@ export class RegisterComponent {
     }
   }
 
-  userNameValidator(form: FormGroup) {
-    const username = form.get('userName')?.value;
-
-    let userExist: boolean = false;
-    this?.userService.CheckIfUserNameExist(username).subscribe({
+  GetAllUserNames() {
+    this.userService.GetAllUserNames().subscribe({
       next: (v) => {
         this.response = v as IResponse;
-
-        console.log(this.response.success);
-        userExist = false;
+        this.userNames = this.response.data;
       },
-      error: (e) => {
-        console.log(e);
-        userExist = true;
-      },
-      complete: () => console.log('complete'),
+      // error: (e) => console.log(e),
+      // complete: () => console.log('complete'),
     });
-    if (userExist) {
-      form.get('userName')?.setErrors({ userExists: true });
-    } else {
-      form.get('userName')?.setErrors({ userExists: null });
-    }
+  }
+
+  GetAllEmails() {
+    this.userService.GetAllEmails().subscribe({
+      next: (v) => {
+        this.response = v as IResponse;
+        this.userEmails = this.response.data;
+      },
+      // error: (e) => console.log(e),
+      // complete: () => console.log('complete'),
+    });
   }
 
   get firstName() {

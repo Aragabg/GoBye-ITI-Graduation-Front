@@ -1,4 +1,5 @@
 <div class="container main py-5">
+  <h2>Register</h2>
   <form [formGroup]="userRegisterForm" (ngSubmit)="submit()">
     <div class="mb-3">
       <label for="firstName" class="form-label">FirstName</label>
@@ -63,8 +64,8 @@
           * UserName must be 3 letters at least,
           <b>{{userName?.errors?.['pattern'].actualValue}}</b> is not valid.
         </small>
-        <small *ngIf="userName?.errors?.['userExists']">
-          * UserName is already token.
+        <small *ngIf="userName?.errors?.['existUserName']">
+          * UserName is already taken.
         </small>
       </div>
     </div>
@@ -87,6 +88,9 @@
         <small *ngIf="email?.errors?.['pattern']">
           * Please provide a valid email address,
           <b>{{email?.errors?.['pattern'].actualValue}}</b> is not valid.
+        </small>
+        <small *ngIf="email?.errors?.['existEmail']">
+          * Email is already taken.
         </small>
       </div>
     </div>
