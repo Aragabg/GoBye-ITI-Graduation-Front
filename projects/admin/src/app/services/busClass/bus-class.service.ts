@@ -11,4 +11,16 @@ export class BusClassService {
   GetAllBusClasses() {
     return this.http.get(`${environment.Api}/BusClasses/details`);
   }
+
+  AddBusClass(busClass: any) {
+    return this.http.post(`${environment.Api}/BusClasses`, busClass);
+  }
+
+  UpdateBusClass(busClassId: number, busClass: any) {
+    return this.http.put(`${environment.Api}/BusClasses/${busClassId}`, busClass);
+  }
+
+  DeleteBusClass(id: number) {
+    return this.http.delete(`${environment.Api}/BusClasses/${id}`);
+  }
 }

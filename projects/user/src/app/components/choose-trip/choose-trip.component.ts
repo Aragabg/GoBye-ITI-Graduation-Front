@@ -63,7 +63,7 @@ export class ChooseTripComponent implements OnInit {
   }
 
   ChooseTrip(tripId: number) {
-    this.router.navigate(['/reservation/', tripId,this.filterTrip.quantity]);
+    this.router.navigate(['/reservation/', tripId, this.filterTrip.quantity]);
   }
 
   GetStartBranchById(id: number) {

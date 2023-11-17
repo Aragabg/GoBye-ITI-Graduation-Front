@@ -55,6 +55,29 @@ import { AddDestinationComponent } from './components/destinations/add-destinati
 import { UpdateDestinationComponent } from './components/destinations/update-destination/update-destination.component';
 import { DeleteDestinationComponent } from './components/destinations/delete-destination/delete-destination.component';
 import { DestinationDetailsComponent } from './components/destinations/destination-details/destination-details.component';
+import { AllPublicActivitiesComponent } from './components/publicActivities/all-public-activities/all-public-activities.component';
+import { AddPublicActivityComponent } from './components/publicActivities/add-public-activity/add-public-activity.component';
+import { DeletePublicActivityComponent } from './components/publicActivities/delete-public-activity/delete-public-activity.component';
+import { UpdatePublicActivityComponent } from './components/publicActivities/update-public-activity/update-public-activity.component';
+import { PublicActivityDetailsComponent } from './components/publicActivities/public-activity-details/public-activity-details.component';
+import { AllBusesComponent } from './components/bus/all-buses/all-buses.component';
+import { AddBusComponent } from './components/bus/add-bus/add-bus.component';
+import { DeleteBusComponent } from './components/bus/delete-bus/delete-bus.component';
+import { UpdateBusComponent } from './components/bus/update-bus/update-bus.component';
+import { BusDetailsComponent } from './components/bus/bus-details/bus-details.component';
+import { AllBusClassesComponent } from './components/busClasses/all-bus-classes/all-bus-classes.component';
+import { AddBusClassComponent } from './components/busClasses/add-bus-class/add-bus-class.component';
+import { DeleteBusClassComponent } from './components/busClasses/delete-bus-class/delete-bus-class.component';
+import { BusClassDetailsComponent } from './components/busClasses/bus-class-details/bus-class-details.component';
+import { UpdateBusClassComponent } from './components/busClasses/update-bus-class/update-bus-class.component';
+import { AllTripsComponent } from './components/trips/all-trips/all-trips.component';
+import { AddTripComponent } from './components/trips/add-trip/add-trip.component';
+import { UpdateTripComponent } from './components/trips/update-trip/update-trip.component';
+import { TripDetailsComponent } from './components/trips/trip-details/trip-details.component';
+import { DeleteTripComponent } from './components/trips/delete-trip/delete-trip.component';
+import { AllReservationComponent } from './components/reservations/all-reservation/all-reservation.component';
+import { DeleteReservationComponent } from './components/reservations/delete-reservation/delete-reservation.component';
+import { ReservationDetailsComponent } from './components/reservations/reservation-details/reservation-details.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +101,30 @@ import { DestinationDetailsComponent } from './components/destinations/destinati
     AddDestinationComponent,
     UpdateDestinationComponent,
     DeleteDestinationComponent,
-    DestinationDetailsComponent
+    DestinationDetailsComponent,
+    AllPublicActivitiesComponent,
+    AddPublicActivityComponent,
+    DeletePublicActivityComponent,
+    UpdatePublicActivityComponent,
+    PublicActivityDetailsComponent,
+    AllBusesComponent,
+    AddBusComponent,
+    DeleteBusComponent,
+    UpdateBusComponent,
+    BusDetailsComponent,
+    AllBusClassesComponent,
+    AddBusClassComponent,
+    DeleteBusClassComponent,
+    BusClassDetailsComponent,
+    UpdateBusClassComponent,
+    AllTripsComponent,
+    AddTripComponent,
+    UpdateTripComponent,
+    TripDetailsComponent,
+    DeleteTripComponent,
+    AllReservationComponent,
+    DeleteReservationComponent,
+    ReservationDetailsComponent,
   ],
   imports: [
     BrowserModule,

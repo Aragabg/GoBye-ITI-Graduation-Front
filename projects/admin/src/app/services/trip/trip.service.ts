@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { IFilterTrip } from '../../models/ifilter-trip';
+import { ITripAdd } from '../../models/trip/itrip-add';
 
 @Injectable({
   providedIn: 'root',
@@ -9,11 +9,23 @@ import { IFilterTrip } from '../../models/ifilter-trip';
 export class TripService {
   constructor(private http: HttpClient) {}
 
-  FilterTrips(filterTrip: IFilterTrip) {
-    return this.http.post(`${environment.Api}/trips/search`, filterTrip);
+  GetAllTrips() {
+    return this.http.get(`${environment.Api}/trips`);
   }
 
-  GetById(tripId: number) {
-    return this.http.get(`${environment.Api}/trips/${tripId}`);
+  FilterTripsByDate(date: Date) {
+    return this.http.get(`${environment.Api}/trips/filter/${date}`);
+  }
+
+  Addtrip(trip: ITripAdd) {
+    return this.http.post(`${environment.Api}/trips`, trip);
+  }
+
+  UpdateTrip(tripId: number, trip: ITripAdd) {
+    return this.http.put(`${environment.Api}/trips/${tripId}`, trip);
+  }
+
+  DeleteTrip(tripId: number) {
+    return this.http.delete(`${environment.Api}/trips/${tripId}`);
   }
 }

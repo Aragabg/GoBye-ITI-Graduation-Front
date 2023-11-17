@@ -4,6 +4,9 @@ import { DestinationService } from '../../../services/destination/destination.se
 import { MatDialog } from '@angular/material/dialog';
 import { IResponse } from '../../../models/iresponse';
 import { AddDestinationComponent } from '../add-destination/add-destination.component';
+import { DestinationDetailsComponent } from '../destination-details/destination-details.component';
+import { UpdateDestinationComponent } from '../update-destination/update-destination.component';
+import { DeleteDestinationComponent } from '../delete-destination/delete-destination.component';
 
 @Component({
   selector: 'app-all-destinations',
@@ -22,16 +25,7 @@ export class AllDestinationsComponent implements OnInit {
     this.GetAllDestinations();
   }
 
-  FilterDestinations() {
-    // if (userId.value == '0') {
-    //   this.GetAllReports();
-    //   console.log('all');
-    // } else {
-    //   this.GetAllReportsByUserId(userId.value);
-    //   console.log('byUser');
-    //   console.log(userId.value);
-    // }
-  }
+
 
   GetAllDestinations() {
     this.destinationService.GetAllDestinations().subscribe({
@@ -57,41 +51,40 @@ export class AllDestinationsComponent implements OnInit {
   }
 
   UpdateDestination(destination: IDestinationRead) {
-    // const dialogRef = this.dialog.open(UpdateQuestionComponent, {
-    //   width: '750px',
-    //   data: question,
-    // });
+    const dialogRef = this.dialog.open(UpdateDestinationComponent, {
+      width: '750px',
+      data: destination,
+    });
 
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   if (result) {
-    //     this.GetAllQuestions();
-    //   }
-    // });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.GetAllDestinations();
+      }
+    });
   }
 
   DestinationDetails(destination: IDestinationRead) {
-    // const dialogRef = this.dialog.open(QuestionDetailsComponent, {
-    //   width: '750px',
-    //   data: question,
-    // });
+    const dialogRef = this.dialog.open(DestinationDetailsComponent, {
+      width: '750px',
+      data: destination,
+    });
 
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   if (result) {
-    //     this.GetAllQuestions();
-    //   }
-    // });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.GetAllDestinations();
+      }
+    });
   }
 
   DeleteDestination(destinationId: number) {
-    // const dialogRef = this.dialog.open(DeleteQuestionComponent, {
-    //   width: '750px',
-    //   data: questionId,
-    // });
-
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   if (result) {
-    //     this.GetAllQuestions();
-    //   }
-    // });
+    const dialogRef = this.dialog.open(DeleteDestinationComponent, {
+      width: '750px',
+      data: destinationId,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.GetAllDestinations();
+      }
+    });
   }
 }

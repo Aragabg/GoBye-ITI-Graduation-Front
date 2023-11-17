@@ -51,10 +51,11 @@
         }
         td {
           padding: 10px 5px;
+          text-align: center;
+
           @media (max-width: 576px) {
             & {
               padding: 10px 2px;
-
             }
           }
           &:last-child {

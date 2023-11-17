@@ -23,7 +23,7 @@
       </div>
       <div class="col-md-12">
         <label for="imageURL" class="d-block fw-bold mb-2">Destination Image</label>
-        <input type="file" id="imageURL" (change)="SelectImage($event)" />
+        <input type="file" id="imageURL" #image (change)="SelectImage($event)" />
       </div>
     </div>
   </form>
@@ -31,7 +31,7 @@
   <footer class="tw-p-6">
     <div class="d-flex justify-content-center align-items-center">
       <div mat-flat-button class="btn btn-success py-1 px-5 mx-2">
-        <button [disabled]="destinationForm.invalid" (click)="Add()">
+        <button [disabled]="destinationForm.invalid && image " (click)="Add()">
           Create
         </button>
       </div>
