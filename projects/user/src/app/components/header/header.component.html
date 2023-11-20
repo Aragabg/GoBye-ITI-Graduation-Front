@@ -25,7 +25,19 @@
       <li><a routerLink="/register" routerLinkActive="active">Register</a></li>
     </ul>
     <ul [hidden]="!isUserLogged">
-      <li><a routerLink="/" >Welcome {{user.userName}}</a></li>
+      <div>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+            <span>Edit Profile</span>
+          </button>
+          <button mat-menu-item>
+            <span>Reservation History</span>
+          </button>
+        </mat-menu>
+      </div>
+      <li>
+        <a [matMenuTriggerFor]="menu">Welcome {{ user.userName }}</a>
+      </li>
       <li><a routerLink="/logout" (click)="LogOut()">LogOut</a></li>
     </ul>
   </div>

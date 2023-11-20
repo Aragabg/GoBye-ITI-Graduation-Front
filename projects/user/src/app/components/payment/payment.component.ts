@@ -96,7 +96,6 @@ export class PaymentComponent implements OnInit {
         },
       })
       .then((result) => {
-        console.log(result);
         if (result.paymentIntent?.status == 'succeeded') {
           this.toastr.success('success', 'Reservation Success');
           this.dialog.close(true);

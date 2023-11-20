@@ -81,7 +81,6 @@ export class ReservationComponent implements OnInit {
       next: (v) => {
         let response: IResponse = v as IResponse;
         this.toaster.success('success', 'Payment Intent Created');
-        console.log(response.data);
         this.PayNow(response.data);
       },
       // error: (e) => {
@@ -99,8 +98,7 @@ export class ReservationComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('done');
-      }else{
+      } else {
         this.reservationService.DeleteReservation(data.id).subscribe({
           next: (v) => {
             this.toaster.error(`Reservation failed.`);

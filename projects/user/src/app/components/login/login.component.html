@@ -46,11 +46,11 @@
 
     <div class="mb-3">
       <input
-      type="checkbox"
-      formControlName="rememberMe"
-      id="rememberMe"
-      name="rememberMe"
-      class="me-2"
+        type="checkbox"
+        formControlName="rememberMe"
+        id="rememberMe"
+        name="rememberMe"
+        class="me-2"
       />
       <label for="rememberMe" class="form-label">Remember Me</label>
     </div>
@@ -61,8 +61,9 @@
       </small>
     </div>
 
-    <button [disabled]="userLoginForm.invalid" type="submit" class="btn">
+    <button [disabled]="userLoginForm.invalid" type="submit" class="btn mb-3">
       Submit
     </button>
+    <div class="forgetPass" (click)="forgetPass()">Forget Password ?</div>
   </form>
 </div>

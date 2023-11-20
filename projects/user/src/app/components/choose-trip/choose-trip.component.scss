@@ -1,8 +1,16 @@
 .main {
-  width: 900px;
-  max-width: 100%;
-  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  @media (max-width: 1199px) {
+    & {
+      flex-direction: column;
+    }
+  }
+ 
   .trips {
+    width: 100%;
+    max-width: 100%;
     background-color: white;
     padding: 40px 20px;
     box-shadow: 0 1px 6px 0 rgba(184, 184, 184, 0.3);

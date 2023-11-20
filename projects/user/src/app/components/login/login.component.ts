@@ -7,6 +7,8 @@ import { BehaviorSubject } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { MatDialog } from '@angular/material/dialog';
+import { ForgetPasswordComponent } from '../forget-password/forget-password.component';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +23,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private userService: UserService,
     private toaster: ToastrService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) {
     this.userLoginForm = fb.group({
       email: [
@@ -46,9 +49,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
   submit() {
     let userLogin: ILogin = this.userLoginForm.value;
-    console.log(userLogin);
     this.userService.Login(userLogin).subscribe({
       next: (v) => {
         this.response = v as IResponse;
@@ -63,6 +66,18 @@ export class LoginComponent implements OnInit {
       //   this.toaster.error('Email or password is not valid');
       // },
       // complete: () => console.log('complete'),
+    });
+  }
+
+  forgetPass() {
+    const dialogRef = this.dialog.open(ForgetPasswordComponent, {
+      width: '750px',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+
+      }
     });
   }
 

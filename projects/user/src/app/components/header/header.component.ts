@@ -24,7 +24,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.GetUser();
-    console.log('ok');
   }
 
   GetUser() {
@@ -32,7 +31,6 @@ export class HeaderComponent implements OnInit {
       next: (v) => {
         let response = v as IResponse;
         this.user = response.data as IUser;
-        console.log(this.user);
       },
       // error: (e) => {},
       // complete: () => console.log('complete'),

@@ -56,7 +56,6 @@ export class FilterTripComponent {
         let response = v as IResponse;
         let startBranches: IBranch[] = response.data;
         this.startBranchesIds = startBranches.map((x) => x.id);
-        console.log(this.startBranchesIds);
       },
       // error: (e) => console.log(e),
       // complete: () => console.log('complete'),
@@ -75,7 +74,6 @@ export class FilterTripComponent {
         let response = v as IResponse;
         let endBranches: IBranch[] = response.data;
         this.endBranchesIds = endBranches.map((x) => x.id);
-        console.log(this.endBranchesIds);
       },
       // error: (e) => console.log(e),
       // complete: () => console.log('complete'),
