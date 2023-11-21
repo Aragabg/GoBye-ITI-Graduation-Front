@@ -5,5 +5,5 @@ export interface IUserRead {
   userName: string;
   email: string;
   phoneNumber: string;
+  blocked: boolean;
 }
-

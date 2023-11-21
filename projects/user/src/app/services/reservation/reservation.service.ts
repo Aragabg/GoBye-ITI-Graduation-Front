@@ -20,4 +20,17 @@ export class ReservationService {
   DeleteReservation(reservationId: number) {
     return this.http.delete(`${environment.Api}/reservations/${reservationId}`);
   }
+
+  GetReservationsByUser(userId: string) {
+    return this.http.get(`${environment.Api}/Reservations/userId/${userId}`);
+
+  }
+  FilterReservationsByTripId(tripId: number) {
+    return this.http.get(`${environment.Api}/Reservations/tripId/${tripId}`);
+  }
+  
+  FilterReservationsByDate(date: Date) {
+    return this.http.get(`${environment.Api}/Reservations/filter/${date}`);
+  }
+
 }

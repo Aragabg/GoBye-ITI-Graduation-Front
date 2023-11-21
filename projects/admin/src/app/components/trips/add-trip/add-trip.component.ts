@@ -20,6 +20,7 @@ export class AddTripComponent implements OnInit {
   tripForm: FormGroup;
   buses: IBusRead[] = [];
 
+
   startBranches: IBranchRead[] = [];
   endBranches: IBranchRead[] = [];
 
@@ -38,13 +39,13 @@ export class AddTripComponent implements OnInit {
     private toastr: ToastrService,
     private dPipe: DatePipe
   ) {
-    this.today = dPipe.transform(new Date(), 'yyyy-MM-dd');
+    this.today = dPipe.transform(new Date(), 'yyyy-MM-dd hh:mm');
 
     this.tripForm = this.fb.group({
       startBranchId: [1, [Validators.required]],
       endBranchId: [14, [Validators.required]],
       departureDate: [this.today, [Validators.required]],
-      arrivalDate: ['', [Validators.required]],
+      arrivalDate: [this.today, [Validators.required]],
       price: ['', [Validators.required]],
       busId: ['', [Validators.required]],
     });
@@ -56,12 +57,10 @@ export class AddTripComponent implements OnInit {
   }
   Add() {
     let trip: ITripAdd = this.tripForm.value;
-    console.log(trip);
 
     this.tripService.Addtrip(trip).subscribe({
       next: (v) => {
         let response = v as IResponse;
-        console.log(response);
         this.toastr.success(response.messages.toString());
         this.dialog.close(true);
       },
@@ -82,12 +81,10 @@ export class AddTripComponent implements OnInit {
   }
 
   changeStartBranch(selectStartBranch: any) {
-    console.log("ok")
     this.branchChanged = true;
     let branch = this.startBranches.find(
       (x) => x.id == selectStartBranch.value
     ) as IBranchRead;
-    console.log(branch);
     this.branchService
       .GetBranchesByDestinationId(branch.destinationId)
       .subscribe({
@@ -95,7 +92,6 @@ export class AddTripComponent implements OnInit {
           let response = v as IResponse;
           let startBranches: IBranchRead[] = response.data;
           this.startBranchesIds = startBranches.map((x) => x.id);
-          console.log(this.startBranchesIds);
         },
         // error: (e) => console.log(e),
         // complete: () => console.log('complete'),
@@ -107,7 +103,6 @@ export class AddTripComponent implements OnInit {
     let branch = this.endBranches.find(
       (x) => x.id == selectEndBranch.value
     ) as IBranchRead;
-    console.log(branch);
     this.branchService
       .GetBranchesByDestinationId(branch.destinationId)
       .subscribe({
@@ -115,7 +110,6 @@ export class AddTripComponent implements OnInit {
           let response = v as IResponse;
           let endBranches: IBranchRead[] = response.data;
           this.endBranchesIds = endBranches.map((x) => x.id);
-          console.log(this.endBranchesIds);
         },
         // error: (e) => console.log(e),
         // complete: () => console.log('complete'),
@@ -126,7 +120,6 @@ export class AddTripComponent implements OnInit {
     this.branchService.GetAllStartBranches().subscribe({
       next: (v) => {
         let response = v as IResponse;
-        console.log(response);
         this.startBranches = response.data;
       },
       // error: (e) => console.log(e),
@@ -138,8 +131,6 @@ export class AddTripComponent implements OnInit {
     this.branchService.GetAllEndBranches().subscribe({
       next: (v) => {
         let response = v as IResponse;
-        console.log(response);
-
         this.endBranches = response.data;
       },
       // error: (e) => console.log(e),

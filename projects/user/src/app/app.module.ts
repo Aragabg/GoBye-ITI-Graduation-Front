@@ -29,7 +29,6 @@ import { FilterTripComponent } from './components/filter-trip/filter-trip.compon
 import { ReservationComponent } from './components/reservation/reservation.component';
 import { PaymentComponent } from './components/payment/payment.component';
 
-
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
@@ -39,6 +38,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
+
+import { MatMenuModule } from '@angular/material/menu';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
@@ -52,6 +53,8 @@ import {
   MAT_DATE_LOCALE,
 } from '@angular/material/core';
 import { ReservationSuccessComponent } from './components/reservation-success/reservation-success.component';
+import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
+import { ReservationHistoryComponent } from './components/reservation-history/reservation-history.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +76,8 @@ import { ReservationSuccessComponent } from './components/reservation-success/re
     ReservationComponent,
     PaymentComponent,
     ReservationSuccessComponent,
+    ForgetPasswordComponent,
+    ReservationHistoryComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,9 +87,8 @@ import { ReservationSuccessComponent } from './components/reservation-success/re
     ReactiveFormsModule,
     DatePipe,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({ positionClass: 'toast-top-right' }),
     NgxSpinnerModule.forRoot({ type: 'square-jelly-box' }),
-
 
     MatAutocompleteModule,
     MatNativeDateModule,
@@ -102,6 +106,7 @@ import { ReservationSuccessComponent } from './components/reservation-success/re
     MatDatepickerModule,
     MatSortModule,
     MatTableModule,
+    MatMenuModule,
   ],
   providers: [
     DatePipe,

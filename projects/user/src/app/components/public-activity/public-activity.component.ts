@@ -11,7 +11,7 @@ import { IPublicActivity } from '../../models/ipublic-activity';
 })
 export class PublicActivityComponent implements OnInit {
   destinationId: number = 0;
-  destinationName: string = "";
+  destinationName: any = '';
   publicActivities: IPublicActivity[] = [];
   response: IResponse = {} as IResponse;
   constructor(
@@ -31,7 +31,7 @@ export class PublicActivityComponent implements OnInit {
       next: (v) => {
         this.response = v as IResponse;
         this.publicActivities = this.response.data;
-        this.destinationName = this.publicActivities[0].destinationName
+        this.destinationName = this.publicActivities[0]?.destinationName;
       },
       // error: (e) => console.log(e),
       // complete: () => console.log('complete'),

@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../../services/user/user.service';
 import { IUser } from '../../models/iuser';
 import { IResponse } from '../../models/iresponse';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-contact-us',
@@ -27,7 +28,8 @@ export class ContactUsComponent implements OnInit {
     private service: ReportService,
     private userService: UserService,
     private toaster: ToastrService,
-    private router: Router
+    private router: Router,
+    private spinner: NgxSpinnerService
   ) {
     this.reportForm = this.fb.group({
       firstName: [
@@ -71,20 +73,25 @@ export class ContactUsComponent implements OnInit {
   }
 
   fillForm() {
-    this.userService.GetUser().subscribe({
-      next: (v) => {
-        let response = v as IResponse;
-        let user = response.data as IUser;
-        this.reportForm.patchValue({
-          firstName: user.firstName,
-          lastName: user.lastName,
-          email: user.email,
-          phoneNumber: user.phoneNumber.slice(1),
-        });
-      },
-      // error: (e) => {},
-      // complete: () => console.log('complete'),
-    });
+    this.spinner.show();
+    setTimeout(() => {
+      this.userService.GetUser().subscribe({
+        next: (v) => {
+          this.spinner.hide();
+          let response = v as IResponse;
+          let user = response.data as IUser;
+          this.reportForm.patchValue({
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            phoneNumber: user.phoneNumber.slice(1),
+          });
+        },
+
+        // error: (e) => {},
+        // complete: () => console.log('complete'),
+      });
+    }, 300);
   }
 
   submit() {

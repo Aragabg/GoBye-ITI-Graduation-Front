@@ -45,14 +45,11 @@ export class AddBranchComponent implements OnInit {
     this.GetAllDestinations();
   }
   Add() {
-    console.log('ok');
     let branch: IBranchAdd = this.branchForm.value;
-    console.log(branch);
 
     this.branchService.AddBranch(branch).subscribe({
       next: (v) => {
         let response = v as IResponse;
-        console.log(response);
         this.toastr.success(response.messages.toString());
         this.dialog.close(true);
       },
@@ -66,7 +63,6 @@ export class AddBranchComponent implements OnInit {
       next: (v) => {
         let response = v as IResponse;
         this.destinations = response.data;
-        console.log(this.destinations);
       },
       // error: (e) => console.log(e),
       // complete: () => console.log('complete'),

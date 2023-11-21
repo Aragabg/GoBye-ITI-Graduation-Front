@@ -27,11 +27,11 @@
     <ul [hidden]="!isUserLogged">
       <div>
         <mat-menu #menu="matMenu">
+          <!-- <button mat-menu-item>
+            <span>Edit Profile</span> 
+          </button> -->
           <button mat-menu-item>
-            <span>Edit Profile</span>
-          </button>
-          <button mat-menu-item>
-            <span>Reservation History</span>
+            <a routerLink="/history">Reservation History</a>
           </button>
         </mat-menu>
       </div>

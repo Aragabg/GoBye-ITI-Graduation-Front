@@ -57,6 +57,8 @@ export class BranchService {
     );
   }
 
+
+
   GetEndBranchById(id: number) {
     return this.http.get(`${environment.Api}/EndBranches/${id}`);
   }

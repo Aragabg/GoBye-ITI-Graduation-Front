@@ -63,7 +63,6 @@ export class AddPublicActivityComponent implements OnInit {
       next: (v) => {
         let response = v as IResponse;
         this.destinations = response.data;
-        console.log(this.destinations);
       },
       // error: (e) => console.log(e),
       // complete: () => console.log('complete'),

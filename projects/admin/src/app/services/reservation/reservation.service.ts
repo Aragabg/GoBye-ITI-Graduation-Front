@@ -15,10 +15,12 @@ export class ReservationService {
     return this.http.get(`${environment.Api}/Reservations/tripId/${tripId}`);
   }
 
-  FilterReservationsByDate(date: Date) {
-    console.log("ok")
-    return this.http.get(`${environment.Api}/Reservations/filter/${date}`);
+  FilterReservationsByUserId(userId: string) {
+    return this.http.get(`${environment.Api}/Reservations/userId/${userId}`);
+  }
 
+  FilterReservationsByDate(date: Date) {
+    return this.http.get(`${environment.Api}/Reservations/filter/${date}`);
   }
 
   DeleteReservation(id: number) {

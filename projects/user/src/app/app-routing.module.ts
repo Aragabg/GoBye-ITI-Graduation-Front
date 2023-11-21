@@ -12,9 +12,10 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './gaurds/auth.guard';
 import { ReservationComponent } from './components/reservation/reservation.component';
 import { ReservationSuccessComponent } from './components/reservation-success/reservation-success.component';
+import { ReservationHistoryComponent } from './components/reservation-history/reservation-history.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'questions', component: QuestionComponent },
   { path: 'destinations', component: DestinationComponent },
@@ -28,7 +29,6 @@ const routes: Routes = [
   {
     path: 'search/:departureDate/:startBranchId/:endBranchId/:quantity',
     component: ChooseTripComponent,
-    canActivate: [AuthGuard],
   },
   {
     path: 'reservation/:tripId/:passengers',
@@ -41,6 +41,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
 
+  { path: 'history', component: ReservationHistoryComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: HomeComponent },

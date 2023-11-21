@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { UserService } from '../../services/user/user.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IResponse } from '../../models/iresponse';
-
+import { IUserRead } from '../../models/user/iuser-read';
+import { AdminService } from '../../services/admin/admin.service';
 
 @Component({
   selector: 'app-header',
@@ -10,28 +10,40 @@ import { IResponse } from '../../models/iresponse';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  admin: IUserRead = {} as IUserRead;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private adminService: AdminService,
+    private _activatedRoute: ActivatedRoute
+  ) {
+    this._activatedRoute.paramMap.subscribe((params) => {
+      this.ngOnInit();
+    });
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.GetAdmin();
+  }
 
-  // GetUser() {
-  //   this.userService.GetUser().subscribe({
-  //     next: (v) => {
-  //       let response = v as IResponse;
-  //       this.user = response.data as IUser;
-  //     },
-  //     // error: (e) => {},
-  //     // complete: () => console.log('complete'),
-  //   });
-  // }
+  GetAdmin() {
+    this.adminService.GetAdmin().subscribe({
+      next: (v) => {
+        let response = v as IResponse;
+        this.admin = response.data as IUserRead;
+      },
+      // error: (e) => {},
+      // complete: () => console.log('complete'),
+    });
+  }
 
   LogOut() {
     this.router.navigate(['/login']);
+    this.admin = {} as IUserRead;
     localStorage.removeItem('token');
   }
 
-  get isUserLogged(): boolean {
+  get isAdminLogged(): boolean {
     return localStorage.getItem('token') ? true : false;
   }
 }

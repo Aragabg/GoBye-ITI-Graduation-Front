@@ -43,7 +43,6 @@ export class AllBranchesComponent implements OnInit {
       next: (v) => {
         let response = v as IResponse;
         this.branches = response.data;
-        console.log(this.branches);
       },
       // error: (e) => console.log(e),
       // complete: () => console.log('complete'),

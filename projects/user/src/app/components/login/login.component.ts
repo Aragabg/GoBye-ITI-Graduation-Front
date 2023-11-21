@@ -5,7 +5,7 @@ import { UserService } from '../../services/user/user.service';
 import { ILogin } from '../../models/ilogin';
 import { BehaviorSubject } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MatDialog } from '@angular/material/dialog';
 import { ForgetPasswordComponent } from '../forget-password/forget-password.component';
@@ -18,14 +18,17 @@ import { ForgetPasswordComponent } from '../forget-password/forget-password.comp
 export class LoginComponent implements OnInit {
   userLoginForm: FormGroup;
   response: IResponse = {} as IResponse;
-
+  returnUrl: string = '';
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
     private toaster: ToastrService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     public dialog: MatDialog
   ) {
+    this.returnUrl =
+      this.activatedRoute.snapshot.queryParams['returnUrl'] || '/';
     this.userLoginForm = fb.group({
       email: [
         '',
@@ -58,8 +61,8 @@ export class LoginComponent implements OnInit {
         let userToken = this.response.data.token;
         localStorage.setItem('token', userToken);
         this.toaster.success('success', 'Login Success');
-        window.location.replace('home');
-        this.router.navigate(['/home']);
+        this.router.navigateByUrl(this.returnUrl);
+        window.location.replace(this.returnUrl);
       },
       // error: (e) => {
       //   console.log(e)
@@ -76,7 +79,6 @@ export class LoginComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-
       }
     });
   }

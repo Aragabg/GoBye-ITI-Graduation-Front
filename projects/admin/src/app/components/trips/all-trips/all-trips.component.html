@@ -1,10 +1,9 @@
 <div class="main container py-5">
   <div class="top">
-    <h3>All Branches</h3>
+    <h3>All Trips</h3>
     <button class="add" (click)="AddTrip()">Add Trip</button>
     <div class="filter">
       <h4>Departure Date</h4>
-
       <input
         type="date"
         [value]="today"
@@ -32,7 +31,7 @@
     <tbody>
       <tr *ngFor="let trip of trips; index as i">
         <td>{{ i + 1 }}</td>
-        <td>{{ trip.id}}</td>
+        <td>{{ trip.id }}</td>
         <td>{{ trip.startBranchName }}</td>
         <td>{{ trip.endBranchName }}</td>
         <td>{{ trip.departureDate | date : "MMM dd, yyyy 'at' hh:mm a" }}</td>

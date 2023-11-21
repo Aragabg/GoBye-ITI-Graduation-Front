@@ -9,6 +9,7 @@ export interface IReservationDetails {
   lastName: string;
   email: string;
   seatNumbers: number[];
+  tripId: number;
   departureDate: Date;
   arrivalDate: Date;
   busClassName: string;

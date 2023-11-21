@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../services/user/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { IResponse } from '../../models/iresponse';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -36,20 +35,7 @@ export class ForgetPasswordComponent {
     let forgetPass = this.forgetPassForm.value;
     console.log(forgetPass);
     this.dialog.close(true);
-
-    this.userService.Login(forgetPass).subscribe({
-      next: (v) => {
-        let response = v as IResponse;
-        console.log(response);
-        this.toaster.success('success', 'Please check your email');
-        this.router.navigate(['/home']);
-      },
-      // error: (e) => {
-      //   console.log(e)
-      //   this.toaster.error('Email or password is not valid');
-      // },
-      // complete: () => console.log('complete'),
-    });
+    this.toaster.success('success', 'Please check your email');
   }
 
   get email() {

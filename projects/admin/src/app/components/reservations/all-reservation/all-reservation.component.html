@@ -20,6 +20,15 @@
         (change)="FilterReservationsByDate(reservationDate)"
       />
     </div>
+    <div class="filter">
+      <h4>UserName</h4>
+      <select #user (change)="FilterByUserName(user)">
+        <option value="0">All</option>
+        <option [value]="user.id" *ngFor="let user of users">
+          {{ user.userName }}
+        </option>
+      </select>
+    </div>
   </div>
   <table>
     <thead>

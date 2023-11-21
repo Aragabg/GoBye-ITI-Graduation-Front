@@ -78,6 +78,19 @@ import { DeleteTripComponent } from './components/trips/delete-trip/delete-trip.
 import { AllReservationComponent } from './components/reservations/all-reservation/all-reservation.component';
 import { DeleteReservationComponent } from './components/reservations/delete-reservation/delete-reservation.component';
 import { ReservationDetailsComponent } from './components/reservations/reservation-details/reservation-details.component';
+import { AllUsersComponent } from './components/users/all-users/all-users.component';
+import { UserDetailsComponent } from './components/users/user-details/user-details.component';
+import { DeleteUserComponent } from './components/users/delete-user/delete-user.component';
+import { AllDriversComponent } from './components/drivers/all-drivers/all-drivers.component';
+import { DriverDetailsComponent } from './components/drivers/driver-details/driver-details.component';
+import { DeleteDriverComponent } from './components/drivers/delete-driver/delete-driver.component';
+import { AddDriverComponent } from './components/drivers/add-driver/add-driver.component';
+import { AddAdminComponent } from './components/admins/add-admin/add-admin.component';
+import { DeleteAdminComponent } from './components/admins/delete-admin/delete-admin.component';
+import { AdminDetailsComponent } from './components/admins/admin-details/admin-details.component';
+import { AllAdminsComponent } from './components/admins/all-admins/all-admins.component';
+import { BlockUserComponent } from './components/users/block-user/block-user.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -125,6 +138,19 @@ import { ReservationDetailsComponent } from './components/reservations/reservati
     AllReservationComponent,
     DeleteReservationComponent,
     ReservationDetailsComponent,
+    AllUsersComponent,
+    UserDetailsComponent,
+    DeleteUserComponent,
+    AllDriversComponent,
+    DriverDetailsComponent,
+    DeleteDriverComponent,
+    AddDriverComponent,
+    AddAdminComponent,
+    DeleteAdminComponent,
+    AdminDetailsComponent,
+    AllAdminsComponent,
+    BlockUserComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

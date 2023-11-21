@@ -8,6 +8,8 @@ import { ReservationDetailsComponent } from '../reservation-details/reservation-
 import { DeleteReservationComponent } from '../delete-reservation/delete-reservation.component';
 import { TripService } from '../../../services/trip/trip.service';
 import { ITripDetails } from '../../../models/trip/itrip-details';
+import { UserService } from '../../../services/user/user.service';
+import { IUserRead } from '../../../models/user/iuser-read';
 
 @Component({
   selector: 'app-all-reservation',
@@ -17,12 +19,16 @@ import { ITripDetails } from '../../../models/trip/itrip-details';
 export class AllReservationComponent implements OnInit {
   reservations: IReservationDetails[] = [];
   trips: ITripDetails[] = [];
+  users: IUserRead[] = [];
+
   today: string | null = '';
 
   constructor(
     private reservationService: ReservationService,
     private tripService: TripService,
     public dialog: MatDialog,
+    private userService: UserService,
+
     private dPipe: DatePipe
   ) {
     this.today = dPipe.transform(new Date(), 'yyyy-MM-dd');
@@ -31,6 +37,7 @@ export class AllReservationComponent implements OnInit {
   ngOnInit(): void {
     this.GetAllReservations();
     this.GetAllTrips();
+    this.GetAllUsers();
   }
 
   FilterByTripIdReservations(tripId: any) {
@@ -63,11 +70,36 @@ export class AllReservationComponent implements OnInit {
       });
   }
 
+  FilterByUserName(user: any) {
+    if (user.value == 0) {
+      this.GetAllReservations();
+    } else {
+      this.reservationService.FilterReservationsByUserId(user.value).subscribe({
+        next: (v) => {
+          let response = v as IResponse;
+          this.reservations = response.data;
+        },
+        // error: (e) => console.log(e),
+        // complete: () => console.log('complete'),
+      });
+    }
+  }
+
   GetAllTrips() {
     this.tripService.GetAllTrips().subscribe({
       next: (v) => {
         let response = v as IResponse;
         this.trips = response.data;
+      },
+      // error: (e) => console.log(e),
+      // complete: () => console.log('complete'),
+    });
+  }
+  GetAllUsers() {
+    this.userService.GetAllUsers().subscribe({
+      next: (v) => {
+        let response = v as IResponse;
+        this.users = response.data;
       },
       // error: (e) => console.log(e),
       // complete: () => console.log('complete'),

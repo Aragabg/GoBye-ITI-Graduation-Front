@@ -31,11 +31,8 @@ export class AllReportsComponent implements OnInit {
   FilterReports(userId: any) {
     if (userId.value == '0') {
       this.GetAllReports();
-      console.log('all');
     } else {
       this.GetAllReportsByUserId(userId.value);
-      console.log('byUser');
-      console.log(userId.value);
     }
   }
 

@@ -44,7 +44,6 @@ export class AllPublicActivitiesComponent implements OnInit {
       next: (v) => {
         let response = v as IResponse;
         this.publicActivities = response.data;
-        console.log(this.publicActivities);
       },
       // error: (e) => console.log(e),
       // complete: () => console.log('complete'),
