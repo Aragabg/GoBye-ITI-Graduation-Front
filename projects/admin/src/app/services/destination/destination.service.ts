@@ -26,4 +26,5 @@ export class DestinationService {
   DeleteDestination(destinationId: number) {
     return this.http.delete(`${environment.Api}/Destinations/${destinationId}`);
   }
+  
 }

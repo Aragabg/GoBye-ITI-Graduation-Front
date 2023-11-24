@@ -18,7 +18,7 @@
       <tr *ngFor="let busClass of busClasses; index as i">
         <td>{{ i + 1 }}</td>
         <td>
-          <img [src]="busClass.classImageURLs[0]" alt="" />
+          <img [src]="busClass.classImageURLs[busClass.classImageURLs.length - 1]" alt="" />
         </td>
         <td>{{ busClass.name }}</td>
         <td>{{ busClass.averagePrice }}</td>
