@@ -25,10 +25,13 @@ export class AddPublicActivityComponent implements OnInit {
     private toastr: ToastrService
   ) {
     this.publicActivityForm = this.fb.group({
-      title: ['', [Validators.required, Validators.pattern('[a-zA-z_]{3,}')]],
+      title: [
+        '',
+        [Validators.required, Validators.pattern('[a-zA-z0-9_ ]{3,}')],
+      ],
       description: [
         '',
-        [Validators.required, Validators.pattern('[a-zA-z_]{3,}')],
+        [Validators.required, Validators.pattern('[a-zA-z0-9_ ]{3,}')],
       ],
       destinationId: ['', [Validators.required]],
     });

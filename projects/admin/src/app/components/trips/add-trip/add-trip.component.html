@@ -64,6 +64,7 @@
           [min]="today"
           [value]="today"
           type="datetime-local"
+          (change)="DateChanged()"
         />
       </div>
     </div>
@@ -80,6 +81,7 @@
           [min]="departureDate?.value"
           [value]="departureDate?.value"
           type="datetime-local"
+          (change)="DateChanged()"
         />
       </div>
     </div>

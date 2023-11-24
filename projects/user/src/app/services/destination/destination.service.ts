@@ -11,6 +11,4 @@ export class DestinationService {
   GetAllDestinations() {
     return this.http.get(`${environment.Api}/Destinations`);
   }
-
-
 }

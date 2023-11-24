@@ -12,8 +12,10 @@ export class BusService {
   GetAllBuses() {
     return this.http.get(`${environment.Api}/Buses`);
   }
-  GetAllAvailableBuses() {
-    return this.http.get(`${environment.Api}/Buses/Available`);
+  GetAllAvailableBuses(departureDate: Date, arrivalDate: Date) {
+    return this.http.get(
+      `${environment.Api}/Buses/Available/${departureDate}/${arrivalDate}`
+    );
   }
 
   AddBus(bus: IBusAdd) {

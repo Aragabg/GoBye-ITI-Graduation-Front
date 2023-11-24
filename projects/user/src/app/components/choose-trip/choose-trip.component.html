@@ -30,6 +30,7 @@
     <div class="trip py-3" *ngFor="let trip of trips">
       <div class="departure">
         <h5 class="point">Departure from {{ trip.startBranchName }}</h5>
+        <h6 class="date">{{ trip.departureDate | date : "MMM dd, yyyy" }}</h6>
         <h5 class="date">{{ trip.departureDate | date : "shortTime" }}</h5>
       </div>
       <div class="hero">
@@ -56,6 +57,7 @@
       </div>
       <div class="arrival">
         <h5 class="point">Arrival to {{ trip.endBranchName }}</h5>
+        <h6 class="date">{{ trip.arrivalDate | date : "MMM dd, yyyy" }}</h6>
         <h5 class="date">{{ trip.arrivalDate | date : "shortTime" }}</h5>
       </div>
       <div class="reservation">

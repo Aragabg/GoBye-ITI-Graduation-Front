@@ -31,10 +31,9 @@
       -moz-appearance: textfield;
     }
 
-    .forgetPass {
-      width: fit-content;
-      margin: auto;
-      color: rgb(84, 84, 197);
+    .forgetPass,
+    .createAccount {
+      color: rgb(84, 84, 197) !important;
       cursor: pointer;
     }
   }

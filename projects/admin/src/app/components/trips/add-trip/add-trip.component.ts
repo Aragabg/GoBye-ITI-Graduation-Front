@@ -20,7 +20,6 @@ export class AddTripComponent implements OnInit {
   tripForm: FormGroup;
   buses: IBusRead[] = [];
 
-
   startBranches: IBranchRead[] = [];
   endBranches: IBranchRead[] = [];
 
@@ -53,7 +52,6 @@ export class AddTripComponent implements OnInit {
   ngOnInit(): void {
     this.GetAllStartBranches();
     this.GetAllEndBranches();
-    this.GetAllAvailableBuses();
   }
   Add() {
     let trip: ITripAdd = this.tripForm.value;
@@ -69,8 +67,16 @@ export class AddTripComponent implements OnInit {
     });
   }
 
-  GetAllAvailableBuses() {
-    this.busService.GetAllAvailableBuses().subscribe({
+  DateChanged() {
+    this.GetAllAvailableBuses(
+      this.departureDate?.value,
+      this.arrivalDate?.value
+    );
+    console.log(this.departureDate?.value)
+    console.log(this.arrivalDate?.value)
+  }
+  GetAllAvailableBuses(departureDate: Date, arrivalDate: Date) {
+    this.busService.GetAllAvailableBuses(departureDate, arrivalDate).subscribe({
       next: (v) => {
         let response = v as IResponse;
         this.buses = response.data;

@@ -65,6 +65,7 @@
             placeholder="departureDate"
             [min]="departureDate"
             type="datetime-local"
+            (change)="DateChanged()"
           />
         </mat-form-field>
       </div>
@@ -81,6 +82,7 @@
             placeholder="arrivalDate"
             [min]="departureDate"
             type="datetime-local"
+            (change)="DateChanged()"
           />
         </mat-form-field>
       </div>
@@ -106,7 +108,7 @@
           <mat-label>Bus Number</mat-label>
           <mat-select formControlName="busId">
             <mat-option *ngFor="let bus of buses" [value]="bus?.id">
-              {{ bus?.number }}
+              {{ bus?.number }} | {{ bus.currentBranch }}
             </mat-option>
           </mat-select>
         </mat-form-field>

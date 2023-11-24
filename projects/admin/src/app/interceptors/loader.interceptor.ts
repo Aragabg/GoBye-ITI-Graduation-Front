@@ -16,13 +16,13 @@ export class LoaderInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    this.spinner.show();
+    // this.spinner.show();
     return next.handle(request).pipe(
-      delay(300),
+      // delay(300),
 
-      finalize(() => {
-        this.spinner.hide();
-      })
+      // finalize(() => {
+      //   this.spinner.hide();
+      // })
     );
   }
 }

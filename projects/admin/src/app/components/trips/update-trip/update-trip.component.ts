@@ -51,7 +51,7 @@ export class UpdateTripComponent {
   ngOnInit(): void {
     this.GetAllStartBranches();
     this.GetAllEndBranches();
-    this.GetAllAvailableBuses();
+    this.DateChanged();
   }
   Update() {
     this.tripService.UpdateTrip(this.data.id, this.tripForm.value).subscribe({
@@ -65,8 +65,15 @@ export class UpdateTripComponent {
     });
   }
 
-  GetAllAvailableBuses() {
-    this.busService.GetAllAvailableBuses().subscribe({
+  DateChanged() {
+    this.GetAllAvailableBuses(
+      this.departureDate?.value,
+      this.arrivalDate?.value
+    );
+  }
+
+  GetAllAvailableBuses(departureDate: Date, arrivalDate: Date) {
+    this.busService.GetAllAvailableBuses(departureDate, arrivalDate).subscribe({
       next: (v) => {
         let response = v as IResponse;
         this.buses = response.data;

@@ -92,7 +92,7 @@ export class ReservationComponent implements OnInit {
 
   PayNow(data: any) {
     const dialogRef = this.dialog.open(PaymentComponent, {
-      width: '750px',
+      width: '575px',
       data: data,
     });
 

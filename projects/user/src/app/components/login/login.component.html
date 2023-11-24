@@ -64,6 +64,10 @@
     <button [disabled]="userLoginForm.invalid" type="submit" class="btn mb-3">
       Submit
     </button>
-    <div class="forgetPass" (click)="forgetPass()">Forget Password ?</div>
+    <div class="d-flex justify-content-between">
+      <div class="createAccount"><a routerLink="/register" routerLinkActive="active">Create Account</a></div>
+      <div class="forgetPass" (click)="forgetPass()">Forget Password ?</div>
+    </div>
+
   </form>
 </div>

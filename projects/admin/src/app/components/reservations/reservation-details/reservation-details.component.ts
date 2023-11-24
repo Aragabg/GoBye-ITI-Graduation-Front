@@ -9,8 +9,6 @@ import { DatePipe } from '@angular/common';
   templateUrl: './reservation-details.component.html',
   styleUrls: ['./reservation-details.component.scss'],
 })
-
-
 export class ReservationDetailsComponent implements OnInit {
   reservationForm: FormGroup;
 
@@ -21,13 +19,16 @@ export class ReservationDetailsComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: IReservationDetails
   ) {
     this.reservationForm = this.fb.group({
-
       tripId: [data?.tripId || ''],
-      date: [ dPipe.transform(data?.date, 'MMM d, y, h:mm:ss a') || ''],
+      date: [dPipe.transform(data?.date, 'MMM d, y, h:mm:ss a') || ''],
       startBranchName: [data?.startBranchName || ''],
       endBranchName: [data?.endBranchName || ''],
-      departureDate: [ dPipe.transform(data?.departureDate, 'MMM d, y, h:mm:ss a') || ''],
-      arrivalDate: [ dPipe.transform(data?.arrivalDate, 'MMM d, y, h:mm:ss a') || ''],
+      departureDate: [
+        dPipe.transform(data?.departureDate, 'MMM d, y, h:mm:ss a') || '',
+      ],
+      arrivalDate: [
+        dPipe.transform(data?.arrivalDate, 'MMM d, y, h:mm:ss a') || '',
+      ],
       busClassName: [data?.busClassName || ''],
       price: [data?.price || ''],
       quantity: [data?.quantity || ''],

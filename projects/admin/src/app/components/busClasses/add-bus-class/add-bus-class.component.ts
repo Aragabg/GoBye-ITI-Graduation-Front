@@ -21,10 +21,10 @@ export class AddBusClassComponent implements OnInit {
     private toastr: ToastrService
   ) {
     this.busClassForm = this.fb.group({
-      name: ['', [Validators.required, Validators.pattern('[a-zA-z_]{3,}')]],
+      name: ['', [Validators.required, Validators.pattern('[a-zA-z0-9_ ]{3,}')]],
       averagePrice: [
         '',
-        [Validators.required, Validators.pattern('[a-zA-z_]{3,}')],
+        [Validators.required, Validators.pattern('[a-zA-z0-9 -_ ]{3,}')],
       ],
     });
   }
