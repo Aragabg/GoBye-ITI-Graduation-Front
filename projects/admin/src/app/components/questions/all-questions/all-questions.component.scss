@@ -23,6 +23,9 @@
       }
     }
   }
+  .tableContainer {
+    overflow-x: auto;
+  }
   table {
     background-color: white;
     thead {
@@ -47,11 +50,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            @media (max-width: 991px) {
-              & {
-                flex-direction: column;
-              }
-            }
             gap: 10px;
             button {
               color: white;

@@ -4,7 +4,7 @@ import { IBranch } from '../../models/ibranch';
 import { BranchService } from '../../services/branch/branch.service';
 import { DatePipe } from '@angular/common';
 import { TripService } from '../../services/trip/trip.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IResponse } from '../../models/iresponse';
 import { IFilterTrip } from '../../models/ifilter-trip';
 
@@ -15,6 +15,10 @@ import { IFilterTrip } from '../../models/ifilter-trip';
 })
 export class FilterTripComponent {
   filterTripsForm: FormGroup;
+  departure: string | null = null;
+  startId: number | null = null;
+  endId: number | null = null;
+  passengers: number | null = null;
 
   startBranches: IBranch[] = [];
   endBranches: IBranch[] = [];
@@ -29,14 +33,31 @@ export class FilterTripComponent {
     private fb: FormBuilder,
     private dPipe: DatePipe,
     private tripService: TripService,
+    private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
     this.today = dPipe.transform(new Date(), 'yyyy-MM-dd');
+    this.activatedRoute.paramMap.subscribe((paramMap) => {
+      this.departure = paramMap.get('departureDate');
+    });
+
+    this.activatedRoute.paramMap.subscribe((paramMap) => {
+      this.startId = Number(paramMap.get('startBranchId'));
+    });
+
+    this.activatedRoute.paramMap.subscribe((paramMap) => {
+      this.endId = Number(paramMap.get('endBranchId'));
+    });
+
+    this.activatedRoute.paramMap.subscribe((paramMap) => {
+      this.passengers = Number(paramMap.get('quantity'));
+    });
+
     this.filterTripsForm = fb.group({
-      departureDate: [this.today, [Validators.required]],
-      startBranchId: [1, [Validators.required]],
-      endBranchId: [14, [Validators.required]],
-      quantity: [1, [Validators.required]],
+      departureDate: [this.departure || this.today, [Validators.required]],
+      startBranchId: [this.startId || 1, [Validators.required]],
+      endBranchId: [this.endId || 14, [Validators.required]],
+      quantity: [this.passengers || 1, [Validators.required]],
     });
   }
 

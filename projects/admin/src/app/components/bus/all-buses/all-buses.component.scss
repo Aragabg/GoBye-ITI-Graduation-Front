@@ -30,6 +30,9 @@
       }
     }
   }
+  .tableContainer {
+    overflow-x: auto;
+  }
   table {
     background-color: white;
     width: 100%;
@@ -44,9 +47,7 @@
           color: white;
           padding: 10px;
           text-align: center;
-          @media (max-width: 576px) {
-            padding: 5px;
-          }
+
         }
       }
     }
@@ -56,12 +57,6 @@
 
         @media (max-width: 576px) {
           font-size: 12px;
-          .phone {
-            transform: rotate(90deg);
-            position: absolute;
-            width: 50px;
-            height: 50px;
-          }
         }
         td {
           padding: 10px;
@@ -72,11 +67,6 @@
             font-weight: bold;
             border-radius: 10px;
             padding: 5px 15px;
-            @media (max-width: 576px) {
-              & {
-                padding: 2px 5px;
-              }
-            }
           }
           span.notAvailable {
             color: white;
@@ -84,26 +74,11 @@
             font-weight: bold;
             border-radius: 10px;
             padding: 5px 15px;
-            @media (max-width: 576px) {
-              & {
-                padding: 2px 5px;
-              }
-            }
-          }
-          @media (max-width: 576px) {
-            & {
-              padding: 5px;
-            }
           }
           &:last-child {
             display: flex;
             justify-content: center;
             align-items: center;
-            @media (max-width: 991px) {
-              & {
-                flex-direction: column;
-              }
-            }
             gap: 10px;
             button {
               color: white;
@@ -113,11 +88,6 @@
               padding: 5px 10px;
               outline: none;
               transition: var(--transition-main);
-              @media (max-width: 576px) {
-                & {
-                  padding: 2px 5px;
-                }
-              }
               &:hover {
                 background-color: white;
               }

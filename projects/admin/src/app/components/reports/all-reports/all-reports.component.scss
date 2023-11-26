@@ -16,6 +16,9 @@
       }
     }
   }
+  .tableContainer {
+    overflow-x: auto;
+  }
   table {
     background-color: white;
     width: 100%;
@@ -42,31 +45,15 @@
 
         @media (max-width: 576px) {
           font-size: 12px;
-          .phone {
-            transform: rotate(90deg);
-            position: relative;
-            width: 20px;
-            height: 20px;
-          }
         }
         td {
           padding: 10px 5px;
           text-align: center;
 
-          @media (max-width: 576px) {
-            & {
-              padding: 10px 2px;
-            }
-          }
           &:last-child {
             display: flex;
             justify-content: center;
             align-items: center;
-            @media (max-width: 991px) {
-              & {
-                flex-direction: column;
-              }
-            }
             gap: 10px;
             button {
               color: white;
@@ -76,11 +63,6 @@
               padding: 5px 10px;
               outline: none;
               transition: var(--transition-main);
-              @media (max-width: 576px) {
-                & {
-                  padding: 2px 5px;
-                }
-              }
               &:hover {
                 background-color: white;
               }

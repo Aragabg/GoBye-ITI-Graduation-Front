@@ -21,14 +21,13 @@ export class AddDestinationComponent implements OnInit {
     private toastr: ToastrService
   ) {
     this.destinationForm = this.fb.group({
-      name: ['', [Validators.required, Validators.pattern('[a-zA-z_]{3,}')]],
+      name: ['', [Validators.required, Validators.pattern('[a-zA-z_ ]{3,}')]],
     });
   }
   ngOnInit(): void {}
 
   SelectImage(event: any) {
     this.selectedFile = event.target.files[0];
-
   }
 
   Add() {

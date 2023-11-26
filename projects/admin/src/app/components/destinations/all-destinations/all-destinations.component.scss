@@ -23,6 +23,9 @@
       }
     }
   }
+  .tableContainer {
+    overflow-x: auto;
+  }
   table {
     width: 100%;
     max-width: 100%;
@@ -44,19 +47,14 @@
         td {
           padding: 10px;
           text-align: center;
-          & img{
+          & img {
             width: 200px;
-            max-width: 100%;
+            min-width: 100px;
           }
           &:last-child {
             display: flex;
             justify-content: center;
             align-items: center;
-            @media (max-width: 991px) {
-              & {
-                flex-direction: column;
-              }
-            }
             gap: 10px;
             button {
               color: white;
